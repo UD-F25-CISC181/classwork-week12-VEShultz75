@@ -39,7 +39,7 @@ export function halve(nums: number[]): number[] {
  * @returns An array of only positive numbers
  */
 export function onlyPositives(nums: number[]): number[] {
-    return [];
+    return nums.filter((number) => number >= 0);
 }
 
 /**
@@ -48,7 +48,12 @@ export function onlyPositives(nums: number[]): number[] {
  * @returns The average of only the positive numbers
  */
 export function averagePositives(nums: number[]): number {
-    return 0;
+    let allPos: number[] = nums.filter((number) => number > 0);
+    let avg: number = 0;
+    if (allPos.length > 0) {
+        avg = allPos.reduce((prev, curr) => prev + curr, 0) / allPos.length;
+    }
+    return avg;
 }
 
 /**
@@ -57,7 +62,7 @@ export function averagePositives(nums: number[]): number {
  * @returns An array of only strings that end with 's'
  */
 export function getPlurals(words: string[]): string[] {
-    return [];
+    return words.filter((word) => word.slice(-1) === "s");
 }
 
 /**
@@ -67,7 +72,13 @@ export function getPlurals(words: string[]): string[] {
  * @returns The first string that ends with 's'
  */
 export function firstPlural(words: string[]): string {
-    return "";
+    let plural: string | undefined = words.find(
+        (word) => word.slice(-1) === "s",
+    );
+    if (plural === undefined) {
+        plural = "";
+    }
+    return plural;
 }
 
 /**
@@ -77,7 +88,13 @@ export function firstPlural(words: string[]): string {
  * @returns The array of numbers with values less than the threshold increased by 1
  */
 export function growIfSmall(nums: number[], threshold: number): number[] {
-    return [];
+    return nums.map((num) => {
+        if (num < threshold) {
+            return num + 1;
+        } else {
+            return num;
+        }
+    });
 }
 
 /**
@@ -88,7 +105,17 @@ export function growIfSmall(nums: number[], threshold: number): number[] {
  * @returns The longest string
  */
 export function longestString(words: string[]): string {
-    return "";
+    let longestString: string = "";
+    if (words.length > 0) {
+        longestString = words.reduce((prev, curr) => {
+            if (curr.length > prev.length) {
+                return curr;
+            } else {
+                return prev;
+            }
+        }, "");
+    }
+    return longestString;
 }
 
 /**
@@ -99,7 +126,18 @@ export function longestString(words: string[]): string {
  * @returns The longest string that ends with 's'
  */
 export function longestPlural(words: string[]): string {
-    return "";
+    let onlyPlurals: string[] = words.filter((word) => word.slice(-1) === "s");
+    let longestPlural: string = "";
+    if (onlyPlurals.length > 0) {
+        longestPlural = onlyPlurals.reduce((prev, curr) => {
+            if (curr.length > prev.length) {
+                return curr;
+            } else {
+                return prev;
+            }
+        }, "");
+    }
+    return longestPlural;
 }
 
 /**
