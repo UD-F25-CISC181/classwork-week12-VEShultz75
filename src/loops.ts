@@ -8,7 +8,7 @@
  * @returns The sum of all numbers in the array
  */
 export function summate(nums: number[]): number {
-    return 0;
+    return nums.reduce((prev, curr) => prev + curr, 0);
 }
 
 /**
@@ -17,7 +17,11 @@ export function summate(nums: number[]): number {
  * @returns The average of all numbers in the array
  */
 export function average(nums: number[]): number {
-    return 0;
+    let avg: number = 0;
+    if (nums.length > 0) {
+        avg = nums.reduce((prev, curr) => prev + curr) / nums.length;
+    }
+    return avg;
 }
 
 /**
@@ -26,7 +30,7 @@ export function average(nums: number[]): number {
  * @returns The array of numbers divided by 2
  */
 export function halve(nums: number[]): number[] {
-    return [];
+    return nums.map((number) => number / 2);
 }
 
 /**
