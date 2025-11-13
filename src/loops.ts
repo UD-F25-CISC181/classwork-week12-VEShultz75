@@ -149,5 +149,17 @@ export function longestPlural(words: string[]): string {
  * @returns An array of the sums of the numbers at each index
  */
 export function addPairs(nums1: number[], nums2: number[]): number[] {
-    return [];
+    let longerList: number[] = nums1;
+    let shorterList: number[] = nums2;
+    if (nums2.length > nums1.length) {
+        longerList = nums2;
+        shorterList = nums1;
+    }
+    return longerList.map((num: number, index: number) => {
+        if (index >= shorterList.length) {
+            return num + 0;
+        } else {
+            return num + shorterList[index];
+        }
+    });
 }
